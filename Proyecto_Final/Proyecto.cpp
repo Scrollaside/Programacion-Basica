@@ -25,7 +25,6 @@ void main() {
 	while (menu != '5') {
 		system("cls");
 		cout << "Bienvenido, al menu para ajendar una cita dental" << endl;
-
 		cout << "\nPresiona 1 para agendar una cita (Maximo 3 citas)" << endl;
 		cout << "Presiona 2 para modificar tu cita" << endl;
 		cout << "Presiona 3 para eliminar una cita" << endl;
