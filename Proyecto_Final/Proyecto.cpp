@@ -27,7 +27,6 @@ void main() {
 		cout << "Bienvenido, al menu para ajendar una cita dental" << endl;
 
 		cout << "\nPresiona 1 para agendar una cita (Maximo 3 citas)" << endl;
-		cout << "\nPresiona 1 para agendar una cita (Maximo 3 citas)" << endl;
 		cout << "Presiona 2 para modificar tu cita" << endl;
 		cout << "Presiona 3 para eliminar una cita" << endl;
 		cout << "Presiona 4 para ver la lista de citas vigentes" << endl;
