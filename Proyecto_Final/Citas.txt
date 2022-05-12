@@ -1,7 +1,0 @@
-Cita 1
-Nombre:  
-Telefono:  
-Hora:  
-Tratamiento:  #  
-Costo: $0
- 

@@ -18,8 +18,8 @@ struct citas {
 };
 
 ofstream myfile("Citas.txt");
-string line;
-ifstream archivo;
+//string line;
+//ifstream archivo;
 
 //int* NumCit_ptr = nullptr;
 
@@ -67,7 +67,6 @@ void main() {
 			system("pause");
 		}
 		else if (menu == '4') {
-			system("cls");
 			Opcion4();
 			system("pause");
 		}
@@ -77,7 +76,7 @@ void main() {
 		}
 		
 		if (j != 0) {
-			ofstream myfile("Citas.txt");
+			myfile.open("Citas.txt");
 			for (int k = 0; k < j; k++) {
 
 				myfile << "Cita " << k + 1 << endl;
@@ -96,12 +95,14 @@ void main() {
 	system("pause");
 }
 
-//------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
 void Opcion1() {
 	
 	cita[i].NumCit = i;
 	
-	cout << "Cita " << i + 1 << endl;
+	cout << "Cita #" << i + 1 << endl;
 	cout << "> Ingrese su nombre:" << endl;
 	cin.ignore(0, '\n');
 	getline(cin, cita[i].nombre);
@@ -173,7 +174,14 @@ void Opcion2() {
 		IngCit -= 1;
 		for (k = 0; k < j; k++) {
 			if (IngCit == cita[k].NumCit) {
-				cout << "Seleccione la opcion que quiere modificar" << endl;
+				cout << "Cita #" << k + 1 << endl;
+				cout << "Nombre: " << cita[k].nombre << endl;
+				cout << "Telefono: " << cita[k].telefono << endl;
+				cout << "Hora: " << cita[k].hora << endl;
+				cout << "Tratamiento: " << cita[k].opcion << "# " << cita[k].nomtrat << endl;
+				cout << "Costo: $" << cita[k].costo << endl;
+				
+				cout << "\nSeleccione la opcion que quiere modificar:" << endl;
 				cout << "1.- Nombre" << endl;
 				cout << "2.- Hora" << endl;
 				cout << "3.- Tratamiento y Nivel" << endl;
@@ -257,11 +265,11 @@ void Opcion2() {
 						h = 'b';
 						break;
 					case '5':
-						cout << "cancelando" << endl;
+						cout << "Cancelando, volviendo al menu principal" << endl;
 						h = 'b';
 						break;
 					default:
-						cout << "esa opcion es invalida" << endl;
+						cout << "Esa opcion es invalida" << endl;
 						break;
 					}
 				}
@@ -280,24 +288,37 @@ void Opcion3() {
 	if (j != 0) {
 		system("cls");
 		cout << "Ingrese el numero de cita que desea eliminar: ";
-		opcion2;
+		//opcion2;
 		h = 'a';
 		cin >> IngCit;
 		//IngCit = 1;
 		IngCit -= 1;
 		for (k = 0; k < j; k++) {
 			if (IngCit == cita[k].NumCit) {
-				cita[k].nombre = " ";
-				cita[k].telefono = " ";
-				cita[k].hora = " ";
-				cita[k].opcion = ' ';
-				cita[k].costo = 0;
-				cita[k].trat = 0;
-				cita[k].nomtrat = " ";
-				cita[k].NumCit = 0;
-				
-				cout << "Cita eliminada" << endl;
-				h = 'b';
+				cout << "Cita #" << k + 1 << endl;
+				cout << "Nombre: " << cita[k].nombre << endl;
+				cout << "Telefono: " << cita[k].telefono << endl;
+				cout << "Hora: " << cita[k].hora << endl;
+				cout << "Tratamiento: " << cita[k].opcion << "# " << cita[k].nomtrat << endl;
+				cout << "Costo: $" << cita[k].costo << endl;
+				cout << "\n> Presione 1 para confirmar, presione cualquier otra tecla para cancelar" << endl;
+				h = _getch();
+				if (h == '1') {
+					cita[k].nombre = "N/A";
+					cita[k].telefono = "N/A";
+					cita[k].hora = "N/A";
+					cita[k].opcion = 'N/A';
+					cita[k].costo = 00;
+					cita[k].trat = 00;
+					cita[k].nomtrat = "N/A";
+					cita[k].NumCit = 00;
+
+					cout << "\nCita eliminada" << endl;
+				}
+				else {
+					cout << "\nCancelando, volviendo al menu principal" << endl;
+				}
+				//h = 'b';
 			}
 		}
 		if (h == 'a') {
@@ -312,9 +333,10 @@ void Opcion3() {
 void Opcion4() {
 	
 	if (j != 0) {
+		system("cls");
 		for (k = 0; k < j; k++) {
 
-			cout << "Cita " << k + 1 << endl;
+			cout << "Cita #" << k + 1 << endl;
 			cout << "Nombre: " << cita[k].nombre << endl;
 			cout << "Telefono: " << cita[k].telefono << endl;
 			cout << "Hora: " << cita[k].hora << endl;
@@ -324,6 +346,6 @@ void Opcion4() {
 		}
 	}
 	else {
-		cout << "No hay citas agendadas!" << endl;
+		cout << "\nAun no hay citas registradas" << endl;
 	}
 }
