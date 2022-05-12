@@ -1,21 +1,7 @@
 Cita 1
-Nombre: Aldo Rogelio
-Telefono: 2
-Hora: 2
-Tratamiento: 2# Extraccion de Caries
-Costo: $800
- 
-Cita 2
-Nombre: 
-Telefono: 1
-Hora: 1
-Tratamiento: 1# Limpieza Dental
-Costo: $200
- 
-Cita 3
-Nombre: Aldo 
-Telefono: 2
-Hora: 2
-Tratamiento: 2# Extraccion de Caries
-Costo: $800
+Nombre:  
+Telefono:  
+Hora:  
+Tratamiento:  #  
+Costo: $0
  

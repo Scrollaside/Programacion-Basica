@@ -30,6 +30,8 @@ ifstream archivo;
 	int k = 0;
 	citas cita[1000];
 	float IngCit = 0;
+	char opcion2;
+	char h;
 //Declaraciones----------------------------------------------------
 
 	void Opcion1();
@@ -44,7 +46,7 @@ void main() {
 		system("cls");
 		cout << "Bienvenido, al menu para ajendar una cita dental" << endl;
 
-		cout << "\nPresiona 1 para agendar una cita (Maximo 3 citas)" << endl;
+		cout << "\nPresiona 1 para agendar una cita" << endl;
 		cout << "Presiona 2 para modificar tu cita" << endl;
 		cout << "Presiona 3 para eliminar una cita" << endl;
 		cout << "Presiona 4 para ver la lista de citas vigentes" << endl;
@@ -164,19 +166,110 @@ void Opcion2() {
 	if (j != 0) {
 		system("cls");
 		cout << "Ingrese el numero de cita que desea modificar: ";
-		char h = 'a';
+		opcion2;
+		h = 'a';
 		cin >> IngCit;
 		//IngCit = 1;
 		IngCit -= 1;
 		for (k = 0; k < j; k++) {
 			if (IngCit == cita[k].NumCit) {
-				cout << cita[k].nombre << endl;
-				
-				h = 'b';
+				cout << "Seleccione la opcion que quiere modificar" << endl;
+				cout << "1.- Nombre" << endl;
+				cout << "2.- Hora" << endl;
+				cout << "3.- Tratamiento y Nivel" << endl;
+				cout << "4.- Telefono" << endl;
+				cout << "5.- Cancelar" << endl;
+
+				while (h == 'a') {
+					cin >> opcion2;
+					switch (opcion2) {
+					case '1':
+						cout << "Nombre actual: " << cita[k].nombre << endl;
+						cout << "Nombre nuevo: ";
+						cin.ignore();
+						getline(cin, cita[k].nombre);
+						cout << "Cambio aplicado!" << endl;
+						h = 'b';
+						break;
+					case '2':
+						cout << "Hora agendada: " << cita[k].hora << endl;
+						cout << "Hora nueva: ";
+						cin.ignore();
+						getline(cin, cita[k].hora);
+						cout << "Cambio aplicado!" << endl;
+						h = 'b';
+						break;
+					case '3':
+						cout << "Tratamiento actual: " << cita[k].opcion << "# " << cita[k].nomtrat << endl;
+						cout << "Costo actual: $" << cita[k].costo << endl;
+						cout << "Tratamiento nuevo: " << endl;
+
+						cout << "\n1# Limpieza dental" << endl;
+						cout << "Limpieza dental completa, lavado a presion de dientes." << endl;
+						cout << "Costo: $200 por tratamiento" << endl;
+						cout << "\n2# Extraccion de caries" << endl;
+						cout << "Extraccion de caries, curacion de encias, lavado de la zona afectada." << endl;
+						cout << "Costo: $400 por tratamiento" << endl;
+						cout << "\n3# Ortodoncia" << endl;
+						cout << "Inicio del tratamiento para correguir dentadura, se seguira varios meses conforme al nivel de tratamiento" << endl;
+						cout << "Costo: $500 por nivel de tratamiento" << endl;
+
+						cita[k].costo = 0;
+						while (cita[k].costo == 0) {
+							cin >> cita[k].opcion;
+							switch (cita[k].opcion) {
+							case '1':
+								cita[k].costo = 200;
+								cita[k].nomtrat = "Limpieza Dental";
+								break;
+
+							case '2':
+								cita[k].costo = 400;
+								cita[k].nomtrat = "Extraccion de Caries";
+								break;
+
+							case '3':
+								cita[k].costo = 500;
+								cita[k].nomtrat = "Ortodoncia";
+								break;
+
+							default:
+								cout << "Esa opcion es invalida" << endl;
+								cita[k].costo = 0;
+								cita[k].nomtrat = "N/A";
+								break;
+							}
+						}
+
+						cout << "> Ingrese el nivel del tratamiento, con un numero" << endl;
+						cin >> cita[k].trat;
+						cita[k].costo *= cita[k].trat;
+						cout << "Costo final: $" << cita[k].costo << endl;
+						cout << "Cambio aplicado!" << endl;
+						h = 'b';
+						break;
+					case '4':
+						cout << "Telefono actual: " << cita[k].telefono << endl;
+						cout << "Telefono nuevo: ";
+						cin.ignore();
+						getline(cin, cita[k].telefono);
+						cout << "Cambio aplicado!" << endl;
+						h = 'b';
+						break;
+					case '5':
+						cout << "cancelando" << endl;
+						h = 'b';
+						break;
+					default:
+						cout << "esa opcion es invalida" << endl;
+						break;
+					}
+				}
 			}
 		}
 		if (h == 'a') {
-			cout << "No existe esa cita" << endl;
+			cout << "No existe esa cita, revise la lista de citas." << endl;
+			cout << "Regresando al menu principal." << endl;
 		}
 	}
 	else {
@@ -184,7 +277,37 @@ void Opcion2() {
 	}
 }
 void Opcion3() {
-	cout << "\nEsa opcion aun no esta disponible!" << endl;
+	if (j != 0) {
+		system("cls");
+		cout << "Ingrese el numero de cita que desea eliminar: ";
+		opcion2;
+		h = 'a';
+		cin >> IngCit;
+		//IngCit = 1;
+		IngCit -= 1;
+		for (k = 0; k < j; k++) {
+			if (IngCit == cita[k].NumCit) {
+				cita[k].nombre = " ";
+				cita[k].telefono = " ";
+				cita[k].hora = " ";
+				cita[k].opcion = ' ';
+				cita[k].costo = 0;
+				cita[k].trat = 0;
+				cita[k].nomtrat = " ";
+				cita[k].NumCit = 0;
+				
+				cout << "Cita eliminada" << endl;
+				h = 'b';
+			}
+		}
+		if (h == 'a') {
+			cout << "No existe esa cita, revise la lista de citas." << endl;
+			cout << "Regresando al menu principal." << endl;
+		}
+	}
+	else {
+		cout << "\nAun no hay citas registradas" << endl;
+	}
 }
 void Opcion4() {
 	
