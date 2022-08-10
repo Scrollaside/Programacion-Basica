@@ -5,7 +5,7 @@
 #include <fstream>
 
 using namespace std;
-//Projecto
+
 struct citas {
 	string nombre;
 	string hora;
